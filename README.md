@@ -44,7 +44,7 @@ Welcome to the **Product Management Web App** — a feature-rich, modern full-st
 > Place your screenshots inside `/public/screenshots` folder in your React project and link them below:
 
 ### 🔐 Login Page
-![Login](public/screenshots/login.png)
+![Login](public/1.jpg)
 
 ### 📝 Signup Page
 ![Signup](public/screenshots/signup.png)

@@ -32,7 +32,7 @@ public class SecureSetup {
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.setAllowedOrigins(List.of("http://localhost:5173")); // 👈 React frontend URL
+        config.setAllowedOrigins(List.of("http://localhost:5173","https://projectmang.netlify.app")); // 👈 React frontend URL
         config.setAllowedHeaders(List.of("Origin", "Content-Type", "Accept", "Authorization"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 

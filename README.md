@@ -62,8 +62,9 @@ Welcome to the **Product Management Web App** — a feature-rich, modern full-st
 
 #### 1. Clone the Repository:
 ```bash
-[git clone https://github.com/your-repo/productManagementApp.git](https://github.com/raja2576/zynetic_22052576.git)
-cd productManagementApp
+git clone [https://github.com/your-repo/productManagementApp.git](https://github.com/raja2576/zynetic_22052576.git)
+cd productManagementApp         --- -> Backend
+cd zynetic_assignment_frontend  -----> Frontend
 ```
 
 #### 2. Configure PostgreSQL

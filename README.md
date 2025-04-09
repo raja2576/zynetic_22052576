@@ -41,10 +41,9 @@ Welcome to the **Product Management Web App** — a feature-rich, modern full-st
 
 ## 📸 Screenshots
 
-> Place your screenshots inside `/public/screenshots` folder in your React project and link them below:
 
 ### 🔐 Login Page
-![Login](public/1.jpg)
+![Login](zynetic_assignment_frontend/public/1.jpg)
 
 ### 📝 Signup Page
 ![Signup](public/screenshots/signup.png)

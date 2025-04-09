@@ -1,4 +1,5 @@
 package com.kiit.productManagementApp.controller;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -10,7 +11,6 @@ import com.kiit.productManagementApp.model.ProductItem;
 import com.kiit.productManagementApp.service.ProductEngine;
 
 
-import java.util.*;
 
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -92,30 +92,35 @@ public class ProductBoss {
         return engine.searchByText(text);
     }
 
-    @GetMapping("/image/{filename:.+}")
-    public ResponseEntity<Resource> getImage(@PathVariable String filename) throws IOException {
-        Path imagePath = Paths.get("uploads").resolve(filename).normalize();
-
-        if (!Files.exists(imagePath)) {
-            return ResponseEntity.notFound().build();
-        }
-
-        Resource resource = new UrlResource(imagePath.toUri());
-        return ResponseEntity.ok()
-        		.contentType(MediaTypeFactory.getMediaType(resource).orElse(MediaType.APPLICATION_OCTET_STREAM))
- // or use MediaTypeFactory if images can be PNG, JPG, etc.
-            .body(resource);
-    }
+//    @GetMapping("/image/{filename:.+}")
+//    public ResponseEntity<Resource> getImage(@PathVariable String filename) throws IOException {
+//        Path imagePath = Paths.get("uploads").resolve(filename).normalize();
+//
+//        if (!Files.exists(imagePath)) {
+//            return ResponseEntity.notFound().build();
+//        }
+//
+//        Resource resource = new UrlResource(imagePath.toUri());
+//        return ResponseEntity.ok()
+//        		.contentType(MediaTypeFactory.getMediaType(resource).orElse(MediaType.APPLICATION_OCTET_STREAM))
+// // or use MediaTypeFactory if images can be PNG, JPG, etc.
+//            .body(resource);
+//    }
 
     
-    // ✅ Photo upload - bhi auth required
-    @PostMapping("/upload")
-    @PreAuthorize("hasAnyRole('ADMIN')")
-    public ResponseEntity<String> uploadPhoto(@RequestParam("file") MultipartFile file) throws IOException {
-        String fname = UUID.randomUUID() + "_" + file.getOriginalFilename();
-        Path uploadPath = Paths.get("uploads");
-        if (!Files.exists(uploadPath)) Files.createDirectories(uploadPath);
-        Files.write(uploadPath.resolve(fname), file.getBytes());
-        return ResponseEntity.ok(fname);
-    }
+//    /
+//    @GetMapping("/image/{filename:.+}")
+//    public ResponseEntity<Resource> serveImage(@PathVariable String filename) throws IOException {
+//        Path imagePath = Paths.get("uploads").resolve(filename).normalize();
+//        Resource resource = new UrlResource(imagePath.toUri());
+//
+//        if (!resource.exists()) {
+//            return ResponseEntity.notFound().build();
+//        }
+//
+//        return ResponseEntity.ok()
+//                .contentType(MediaType.IMAGE_JPEG) // or detect content type dynamically
+//                .body(resource);
+//    }
+
 }

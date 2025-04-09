@@ -46,13 +46,13 @@ Welcome to the **Product Management Web App** — a feature-rich, modern full-st
 ![Login](zynetic_assignment_frontend/public/1.jpg)
 
 ### 📝 Signup Page
-![Signup](public/screenshots/signup.png)
+![Signup](zynetic_assignment_frontend/public/2.jpg)
 
 ### 📦 Product Dashboard
-![Dashboard](public/screenshots/dashboard.png)
+![Dashboard](zynetic_assignment_frontend/public/userbased page.jpg)
 
 ### ➕ Add/Edit Product (Admin only)
-![Add Product](public/screenshots/add-product.png)
+![Add Product](zynetic_assignment_frontend/public/5.jpg)
 
 ---
 

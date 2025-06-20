@@ -124,7 +124,260 @@ useEffect(() => {
 ```
 > Added this Code to Keep the server alive (As i m working on free tier subscrpition)
 
+
 ---
+
+````markdown
+# 📦 Product Management App – API Documentation
+
+
+This API supports user authentication, admin functionality, product management, and image serving.
+
+---
+
+## 🛡️ Authentication API – `/api/auth`
+
+### 🔐 POST `/api/auth/signup`
+
+Register a new **User** account.
+
+#### Request Body
+```json
+{
+  "email": "user@example.com",
+  "password": "yourPassword"
+}
+````
+
+#### Responses
+
+* `200 OK` – Returns the created user.
+* `409 Conflict` – If user already exists.
+
+---
+
+### 🔐 POST `/api/auth/admin/signup`
+
+Register a new **Admin** account.
+
+#### Request Body
+
+```json
+{
+  "email": "admin@example.com",
+  "password": "yourPassword"
+}
+```
+
+#### Responses
+
+* `200 OK` – Returns the created admin user.
+* `409 Conflict` – If admin already exists.
+
+---
+
+### 🔐 POST `/api/auth/login`
+
+Login as a user or admin.
+
+#### Request Body
+
+```json
+{
+  "email": "user@example.com",
+  "password": "yourPassword"
+}
+```
+
+#### Responses
+
+* `200 OK`
+
+```json
+{
+  "token": "JWT_TOKEN"
+}
+```
+
+* `401 Unauthorized` – Invalid credentials.
+
+---
+
+## 🖼️ Image API – `/api/products/image`
+
+### 🖼️ GET `/api/products/image/{filename}`
+
+Serves an uploaded product image.
+
+#### Path Parameter
+
+* `filename`: Name of the file (e.g. `watch.jpg`)
+
+#### Responses
+
+* `200 OK` – Returns the image file.
+* `404 Not Found` – If the file does not exist.
+
+---
+
+## 🛍️ Product API – `/api/products`
+
+All endpoints below require **JWT authentication**.
+
+---
+
+### ➕ POST `/api/products/add`
+
+Create a new product.
+**Access**: `ADMIN` only
+
+#### Request Body
+
+```json
+{
+  "name": "Smartphone",
+  "price": 599.99,
+  "category": "Electronics",
+  "rating": 4.5,
+  "description": "High-end Android smartphone"
+}
+```
+
+#### Response
+
+* `200 OK` – Returns the created product.
+
+---
+
+### 📄 GET `/api/products/all`
+
+Get a list of all products.
+**Access**: `USER` or `ADMIN`
+
+#### Response
+
+* `200 OK` – List of product items.
+
+---
+
+### ❌ DELETE `/api/products/remove/{id}`
+
+Delete a product by ID.
+**Access**: `ADMIN` only
+
+#### Path Parameter
+
+* `id`: Product ID
+
+#### Response
+
+* `200 OK` – If deletion is successful.
+
+---
+
+### ✏️ PUT `/api/products/modify`
+
+Update an existing product.
+**Access**: `ADMIN` only
+
+#### Request Body
+
+Same format as POST `/add`
+
+---
+
+### 📦 GET `/api/products/filter/category`
+
+Filter products by category.
+**Access**: `USER` or `ADMIN`
+
+#### Query Parameter
+
+* `category`: e.g. `Electronics`
+
+---
+
+### 💸 GET `/api/products/filter/price`
+
+Filter products by price range.
+**Access**: `USER` or `ADMIN`
+
+#### Query Parameters
+
+* `min`: Minimum price
+* `max`: Maximum price
+
+---
+
+### ⭐ GET `/api/products/filter/rating`
+
+Filter products by rating.
+**Access**: `USER` or `ADMIN`
+
+#### Query Parameter
+
+* `rate`: Minimum rating (e.g. `4.0`)
+
+---
+
+### 🔍 GET `/api/products/search`
+
+Search products by keyword.
+**Access**: `USER` or `ADMIN`
+
+#### Query Parameter
+
+* `text`: Keyword (e.g. `laptop`)
+
+---
+
+## 🔑 Authentication Summary
+
+| Endpoint                       | Role Required   |
+| ------------------------------ | --------------  |
+| `POST /api/auth/signup`        | ❌ Public       |
+| `POST /api/auth/admin/signup`  | ❌ Public       |
+| `POST /api/auth/login`         | ❌ Public       |
+| `POST /api/products/add`       | ✅ `ADMIN`      |
+| `GET /api/products/all`        | ✅ `USER/ADMIN` |
+| `DELETE /api/products/remove`  | ✅ `ADMIN`      |
+| `PUT /api/products/modify`     | ✅ `ADMIN`      |
+| `GET /api/products/filter/...` | ✅ `USER/ADMIN` |
+| `GET /api/products/search`     | ✅ `USER/ADMIN` |
+
+---
+
+## 🧪 Testing Notes
+
+Use tools like **Postman**, **Insomnia**, or cURL.
+
+For protected routes, include the JWT token in the headers:
+
+```
+Authorization: Bearer YOUR_JWT_TOKEN
+```
+
+---
+
+## 📁 File Uploads
+
+Images should be stored in the `/uploads` directory. File retrieval is handled via:
+
+```
+GET /api/products/image/{filename}
+```
+
+---
+
+## 👨‍💻 Built With
+
+* Spring Boot
+* Spring Security (JWT)
+* Maven
+* Java 17+
+
+---
+
 
 ## 🧑‍💻 Author
 
